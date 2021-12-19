@@ -1,0 +1,11 @@
+# Testing Spotify API
+
+## Auth
+I'm using the Client Credentials auth flow outlined here: https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/.
+This requires making a post request to Spotify's token endpoint using the client ID and client secret key to get a bearer token.
+This process is outlined in the `get_bearer()` method in `run.py`.
+
+## Main Request
+Once the bearer token has been received, a request can now be made to Spotify's Web API using the bearer token.
+I am testing the Get Album endpoint as shown in Spotify's documentation. <br>
+https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album
