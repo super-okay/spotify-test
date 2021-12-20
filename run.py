@@ -3,8 +3,8 @@ import json
 import base64
 from creds import *
 
-def get_bearer():
-    ''' gets new bearer token from Spotify, returns string '''
+def get_bearer() -> str:
+    ''' gets new bearer token from Spotify, returns bearer token '''
     url='https://accounts.spotify.com/api/token'
     id_string = '{}:{}'.format(CLIENT_ID, CLIENT_SECRET)
     base64_id = base64.b64encode(id_string.encode('ascii'))
@@ -20,9 +20,14 @@ def get_bearer():
     bearer = r.json()['access_token']
     return bearer
 
-def make_request(bearer):
-    ''' makes main API request to Spotify, prints response '''
-    url = 'https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy'
+def get_album(bearer, album_id):
+    ''' 
+        makes request to the get album endpoint
+        bearer: bearer token
+        album_id: album id
+        returns nothing, prints result
+    '''
+    url = 'https://api.spotify.com/v1/albums/{}'.format(album_id)
     headers = {
         'Authorization': 'Bearer {}'.format(bearer)
     }
@@ -32,7 +37,8 @@ def make_request(bearer):
 
 def main():
     bearer = get_bearer()
-    make_request(bearer)
+    album_id = '4aawyAB9vmqN3uQ7FjRGTy'
+    get_album(bearer, album_id)
 
 
 if __name__ == "__main__":
