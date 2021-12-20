@@ -34,11 +34,21 @@ def get_album(bearer, album_id):
     r = requests.get(url=url, headers=headers)
     print(json.dumps(r.json(), indent=4))
 
+def search_artist(bearer, keyword):
+    url = 'https://api.spotify.com/v1/search?type=artist&limit=10&q={}'.format(keyword)
+    headers = {
+        'Authorization': 'Bearer {}'.format(bearer)
+    }
+    r = requests.get(url=url, headers=headers)
+    print(json.dumps(r.json(), indent=4))
+
 
 def main():
     bearer = get_bearer()
-    album_id = '4aawyAB9vmqN3uQ7FjRGTy'
-    get_album(bearer, album_id)
+    # album_id = '4aawyAB9vmqN3uQ7FjRGTy'
+    # get_album(bearer, album_id)
+    keyword='eminem'
+    search_artist(bearer, keyword)
 
 
 if __name__ == "__main__":
