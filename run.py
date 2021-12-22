@@ -35,12 +35,20 @@ def get_album(bearer, album_id):
     print(json.dumps(r.json(), indent=4))
 
 def search_artist(bearer, keyword):
-    url = 'https://api.spotify.com/v1/search?type=artist&limit=10&q={}'.format(keyword)
+    url = 'https://api.spotify.com/v1/search?type=artist&limit=3&q={}'.format(keyword)
     headers = {
         'Authorization': 'Bearer {}'.format(bearer)
     }
     r = requests.get(url=url, headers=headers)
-    print(json.dumps(r.json(), indent=4))
+    results = r.json()
+    # assuming the first search result is the artist the user is looking for
+    name = results['artists']['items'][0]['name']
+    genres = results['artists']['items'][0]['genres']
+    popularity = results['artists']['items'][0]['popularity']
+    print('Name: {}'.format(name))
+    print('Genres: {}'.format(genres))
+    print('Popularity Ranking: {}'.format(popularity))
+    # print(json.dumps(results, indent=4))
 
 
 def main():
