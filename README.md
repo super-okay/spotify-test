@@ -1,8 +1,7 @@
 # Testing Spotify API
 
 ## Auth
-I'm using the Client Credentials auth flow outlined here: https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/.
-This requires making a post request to Spotify's token endpoint using the client ID and client secret key to get a bearer token.
+I'm using the [Client Credentials](https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/) auth flow. This requires making a post request to Spotify's token endpoint using the client ID and client secret key to get a bearer token.
 This process is outlined in the `get_bearer()` method in `run.py`.
 
 ## Main Request
